@@ -10,7 +10,7 @@ const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1 }) => {
       <div className="pane" style={{ flex: leftWeight, marginLeft: '20px'}}>{left}</div>
       <div className="pane" style={{ flex: rightWeight }}>{right}</div>
     </div>
-  );
+  ); 
 };
 
 const SplitScreenExample = () => {
