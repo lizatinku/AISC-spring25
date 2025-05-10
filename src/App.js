@@ -7,7 +7,7 @@ const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1 }) => {
   const [left, right] = React.Children.toArray(children);
   return (
     <div className="split-screen">
-      <div className="pane" style={{ flex: leftWeight, marginLeft: '20px'  }}>{left}</div>
+      <div className="pane" style={{ flex: leftWeight, marginLeft: '20px'}}>{left}</div>
       <div className="pane" style={{ flex: rightWeight }}>{right}</div>
     </div>
   );
@@ -27,5 +27,6 @@ const SplitScreenExample = () => {
     </SplitScreen>
   );
 };
+
 export default SplitScreenExample;
 

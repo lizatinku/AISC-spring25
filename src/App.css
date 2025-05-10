@@ -6,8 +6,11 @@
 
 .left-pane {
   grid-column: 1;
+  background-color:'black';
+  text-decoration-color: 'white';
 }
 
 .right-pane {
   grid-column: 2;
+  background-color: #cdf6fc;
 }
