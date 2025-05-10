@@ -1,13 +1,9 @@
 .split-screen {
-  height: 100vh; /* Make sure it takes the full viewport height */
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+  display: flex;
+  height: 100vh;
+  width: 100%;
 }
 
-.left-pane {
-  grid-column: 1;
-}
-
-.right-pane {
-  grid-column: 2;
+.pane {
+  overflow: auto;
 }

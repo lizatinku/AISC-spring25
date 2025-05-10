@@ -2,27 +2,28 @@
 import React from 'react';
 import './SplitScreen.css';
 
-const SplitScreen = ({ children }) => {
-  return <div className="split-screen">{children}</div>;
-};
-
-const Pane = ({ children, className }) => {
-  return <div className={className}>{children}</div>;
+const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1 }) => {
+  const [left, right] = React.Children.toArray(children);
+  return (
+    <div className="split-screen">
+      <div className="pane" style={{ flex: leftWeight }}>{left}</div>
+      <div className="pane" style={{ flex: rightWeight }}>{right}</div>
+    </div>
+  );
 };
 
 const SplitScreenExample = () => {
   return (
-    <SplitScreen>
-      <Pane className="left-pane">
+    <SplitScreen leftWeight={1} rightWeight={3}>
+      <div>
         <h1>Left Pane</h1>
         <p>Content for the left side.</p>
-      </Pane>
-      <Pane className="right-pane">
+      </div>
+      <div>
         <h1>Right Pane</h1>
         <p>Content for the right side.</p>
-      </ </Pane>
+      </div>
     </SplitScreen>
   );
 };
-
 export default SplitScreenExample;
