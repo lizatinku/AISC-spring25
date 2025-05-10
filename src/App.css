@@ -1,12 +1,16 @@
 .split-screen {
-  height: 100vh; /* Make sure it takes the full viewport height */
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.pane {
+  overflow: auto;
 }
 
 .left-pane {
   grid-column: 1;
-  background-color:'black';
+  background-color: #8c1c26;
   text-decoration-color: 'white';
 }
 
