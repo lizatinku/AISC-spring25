@@ -1,7 +1,7 @@
 import racecar from './assets/racecar1.png';
 
 const developers = [
-  'Desiree P',
+  'Desiree Poon',
   'Jayanth Pasupulati',
   'Liza Tinku Jose',
   'Pranaya Rao Gupta',

@@ -8,15 +8,6 @@
   overflow: auto;
 }
 
-.left-pane {
-  background-color: #8c1c26;
-  color: white;
-}
-
-.right-pane {
-  background-color: #cdf6fc;
-}
-
 .right-panel {
   padding: 2rem;
   background-color: white;
@@ -24,6 +15,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.left-panel {
+  background-color: #8c1c26;
+  color:#ffffff;
+  width: 250px;
   height: 100%;
   overflow-y: auto;
 }
