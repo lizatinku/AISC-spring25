@@ -23,7 +23,7 @@ const Box = ({}) => {
 const LeftPanel = () => {
   return (
     <div style={{ height: 897 ,backgroundColor: '#5C101E'}} >
-      <img src={logo} alt="Racecar" className="racecar-img" style={{height:75, width:115}} />
+      <img src={logo} alt="Racecar" className="racecar-img" style={{height:75, width:115, marginLeft: 10}} />
       <header style={{ textAlign: 'center', color: 'white'}}>
         <h1>Result Predictor</h1>
         <p>Based on the qualifying Position</p>
@@ -35,20 +35,11 @@ const LeftPanel = () => {
       </Box>
 
       {/* input and dropdown menus in the box */}
-      <InputBox 
-        style={{backgroundColor: '#0000000'}}>
-      </InputBox>
-      <Circuit style={{backgroundColor: '#000000'}}>
-      </Circuit>
-      <TyreCompound style={{backgroundColor: '#000000'}}>
-      </TyreCompound>
-      <WeatherData style={{backgroundColor: '#000000'}}>
-      </WeatherData>
-      <Predict style={{backgroundColor: 'white'}}>
-        Predict
-      </Predict>
-
-      {/* Your form components will go here later */}
+      <InputBox style={{backgroundColor: '#0000000'}}> </InputBox>
+      <Circuit style={{backgroundColor: '#000000'}}> </Circuit>
+      <TyreCompound style={{backgroundColor: '#000000'}}> </TyreCompound>
+      <WeatherData style={{backgroundColor: '#000000'}}> </WeatherData>
+      <Predict style={{backgroundColor: 'white'}}> </Predict>
     </div>
   );
 };

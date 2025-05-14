@@ -9,7 +9,8 @@ const RoundedBox = ({ radius = '10px' }) => {
         border: '1px solid #ccc',
         height: '500px', width: '450px',
         marginLeft: 75,
-        marginTop: 75
+        marginTop: 75,
+        backgroundColor: '#8C1C26'
        }}>
     </div>
   );
