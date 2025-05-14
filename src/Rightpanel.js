@@ -1,4 +1,5 @@
-import racecar from './assets/racecar1.png';
+//import racecar from './assets/racecar1.png';
+import racecar from './assets/car.png';
 
 const developers = [
   'Desiree Poon',
@@ -23,7 +24,7 @@ export default function RightPanel() {
           Spanning five continents, it’s a high-stakes blend of speed, strategy, and split-second decisions.
         </p>
 
-        <img src={racecar} alt="Racecar" className="racecar-img" style={{height:700, width:980}}/>
+        <img src={racecar} alt="Racecar" className="racecar-img"/>
       </div>
 
       <div className="dev-section">
