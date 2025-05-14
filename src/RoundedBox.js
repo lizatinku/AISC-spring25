@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RoundedBox = ({ radius = '10px', ...props }) => {
+const RoundedBox = ({ radius = '10px' }) => {
   return (
     <div
       style={{
@@ -8,7 +8,8 @@ const RoundedBox = ({ radius = '10px', ...props }) => {
         padding: '15px',
         border: '1px solid #ccc',
         height: '500px', width: '450px',
-        marginLeft: 75
+        marginLeft: 75,
+        marginTop: 75
        }}>
     </div>
   );
