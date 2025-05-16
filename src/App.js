@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import LeftPanel from './Leftpanel';
 import RightPanel from './Rightpanel';
+import Leaderboard from './leaderboard';
 
 
 const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1 }) => {
@@ -18,7 +19,8 @@ function App() {
   return (
     <SplitScreen leftWeight={0.6} rightWeight={1}>
       <LeftPanel />
-      <RightPanel />
+      {/* <RightPanel /> */}
+      <Leaderboard />
     </SplitScreen>
   );
 }

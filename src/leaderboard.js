@@ -9,24 +9,35 @@ const developers = [
   'Rei Hernandez',
 ];
 
-export default function RightPanel() {
+const Box =({}) => {
+  return (
+    <div
+      style ={{padding: '15px',
+        border: '5px solid #ccc',
+        borderColor: '#B6B5B5',
+        height: '600px', width: '600px',
+        marginLeft: 175,
+        backgroundColor: '#B6B5B5'
+      }}>
+    </div>
+  )
+}
+
+export default function Leaderboard() {
   return (
     <div className="right-panel">
       <div className="content">
-        <header style={{textAlign: 'center'}}>
+        <header style={{ textAlign: 'center'}}>
         <h1 className="title">F1 Race Predictor</h1>
-        <p className="subtitle">
-          A Machine Learning approach to predict race results and detailed circuit analysis.
-        </p>
         </header>
 
-        <h2 className="section-header">About F1</h2>
-        <p className="paragraph">
-          Formula 1, the world’s top motorsport since 1950, features 20 drivers from 10 elite teams racing on legendary tracks like Monaco and Suzuka.
-          Spanning five continents, it’s a high-stakes blend of speed, strategy, and split-second decisions.
+        <p className="leaderboard">
+          Leaderboard
         </p>
 
-        <img src={racecar} alt="Racecar" className="racecar-img"/>
+        <Box style={{width: 100, height: 100, backgroundColor: 'white'}}>
+        </Box>
+
       </div>
 
       <div className="dev-section">
