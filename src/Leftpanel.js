@@ -19,8 +19,7 @@ const Box = ({}) => {
     </div>
   );
 };
-
-const LeftPanel = () => {
+function LeftPanel ({setRightPanelView}) {
   return (
     <div style={{ height: 931 ,backgroundColor: '#5C101E'}} >
       <img src={logo} alt="Racecar" className="racecar-img" style={{height:75, width:115, marginLeft: 10}} />
@@ -39,7 +38,7 @@ const LeftPanel = () => {
       <Circuit style={{backgroundColor: '#000000'}}> </Circuit>
       <TyreCompound style={{backgroundColor: '#000000'}}> </TyreCompound>
       <WeatherData style={{backgroundColor: '#000000'}}> </WeatherData>
-      <Predict style={{backgroundColor: 'white'}}> </Predict>
+      <Predict setRightPanelView={setRightPanelView}> </Predict>
     </div>
   );
 };

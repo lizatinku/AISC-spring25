@@ -3,6 +3,8 @@ import React from 'react';
 import LeftPanel from './Leftpanel';
 import RightPanel from './Rightpanel';
 import Leaderboard from './leaderboard';
+import { useState } from "react";
+import Predict from "./Predict";
 
 
 const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1 }) => {
@@ -16,11 +18,14 @@ const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1 }) => {
 };
 
 function App() {
+  const [rightPanelView, setRightPanelView] = useState("default");
+
   return (
     <SplitScreen leftWeight={0.6} rightWeight={1}>
-      <LeftPanel />
-      {/* <RightPanel /> */}
-      <Leaderboard />
+      <LeftPanel setRightPanelView={setRightPanelView} />
+      <div className="right-panel">
+        {rightPanelView === "leaderboard" ? <Leaderboard /> : <RightPanel />}
+      </div>
     </SplitScreen>
   );
 }
