@@ -1,4 +1,3 @@
-//import racecar from './assets/racecar1.png';
 import racecar from './assets/car.png';
 
 const developers = [

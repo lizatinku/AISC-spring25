@@ -2,10 +2,13 @@
   display: flex;
   height: 100vh;
   width: 100%;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 .pane {
-  overflow: auto;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .right-panel {
@@ -14,31 +17,32 @@
   color: black;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: 100%;
   overflow-y: auto;
+  flex: 1;
 }
 
 .left-panel {
   background-color: #8c1c26;
-  color:#ffffff;
-  width: 250px;
+  color: #ffffff;
+  width: 420px;
+  min-width: 320px;
+  overflow-y: auto;
 }
 
 .title {
-  font-size: 2.25rem; 
+  font-size: 2.25rem;
   font-weight: 800;
   margin-bottom: 0.75rem;
 }
 
-/* Subtitle text */
 .subtitle {
   margin-bottom: 1.5rem;
   font-size: 0.875rem;
   color: #555;
 }
 
-/* Section headers like “About F1” and “Developed By” */
 .section-header {
   font-weight: 600;
   font-size: 1rem;
@@ -51,7 +55,6 @@
   margin-bottom: 1.5rem;
 }
 
-/* Racecar image styling */
 .racecar-img {
   width: 100%;
   max-height: 30rem;
@@ -77,4 +80,26 @@
   border-radius: 1rem;
   font-weight: 600;
   border: 1px solid #fca5a5;
+}
+
+@media (max-width: 768px) {
+  .split-screen {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-panel,
+  .right-panel {
+    width: 100% !important;
+    min-width: unset;
+    padding: 1rem;
+  }
+
+  .right-panel {
+    height: auto;
+  }
+
+  .racecar-img {
+    max-height: 12rem;
+  }
 }

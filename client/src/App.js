@@ -4,7 +4,6 @@ import LeftPanel from './Leftpanel';
 import RightPanel from './Rightpanel';
 import Leaderboard from './leaderboard';
 import { useState } from "react";
-import Predict from "./Predict";
 
 
 const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1 }) => {

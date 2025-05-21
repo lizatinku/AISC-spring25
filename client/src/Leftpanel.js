@@ -1,47 +1,107 @@
-import React from 'react';
-import logo from './assets/fonelogo.png'; 
-import RoundedBox from './RoundedBox';
-import InputBox from './YearBox';
-import Circuit from './CircuitDropdown';
-import TyreCompound from './TyreCompoundDropdown';
-import WeatherData from './IncludeWeatherDataDropdown';
-import Predict from './Predict';
+import React, { useState, useRef, useEffect } from 'react';
+import logo from './assets/fonelogo.png';
+import './Leftpanel.css';
 
-const Box = ({}) => {
+function LeftPanel({ setRightPanelView }) {
+  const [selectedWeather, setSelectedWeather] = useState(null);
+
   return (
-    <div
-      style={{
-        padding: '15px',
-        backgroundColor: '#510A17',
-        height: '100px', width: '610px',
-        marginTop: -705
-       }}>
-    </div>
-  );
-};
-function LeftPanel ({setRightPanelView}) {
-  return (
-    <div style={{ height: 931 ,backgroundColor: '#5C101E'}} >
-      <img src={logo} alt="Racecar" className="racecar-img" style={{height:75, width:115, marginLeft: 10}} />
-      <header style={{ textAlign: 'center', color: 'white'}}>
+    <div className="left-panel-container">
+      <img src={logo} alt="Racecar" className="racecar-img" />
+      <header className="header-text">
         <h1>Result Predictor</h1>
         <p>Based on the qualifying Position</p>
       </header>
 
-      <RoundedBox style={{ backgroundColor: '#8C1C26'}}>
-      </RoundedBox>
-      <Box style= {{ backgroundColor: '#510A17'}}>
-      </Box>
+      <div className="form-box">
+        <div className="form-group">
+          <label>Year:</label>
+          <select className="input-field" defaultValue="2025">
+            <option value="2025">2025</option>
+          </select>
+        </div>
 
-      {/* input and dropdown menus in the box */}
-      <InputBox style={{backgroundColor: '#0000000'}}> </InputBox>
-      <Circuit style={{backgroundColor: '#000000'}}> </Circuit>
-      <TyreCompound style={{backgroundColor: '#000000'}}> </TyreCompound>
-      <WeatherData style={{backgroundColor: '#000000'}}> </WeatherData>
-      <Predict setRightPanelView={setRightPanelView}> </Predict>
+        <div className="form-group">
+          <label>Circuit:</label>
+          <select className="input-field">
+            <option>Select an option</option>
+            <option>Australia</option>
+            <option>Japan</option>
+            <option>Bahrain</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Tyre Compound:</label>
+          <select className="input-field">
+            <option>Select an option</option>
+            <option>Soft</option>
+            <option>Medium</option>
+            <option>Hard</option>
+          </select>
+        </div>
+
+        <WeatherDropdown
+          options={['Yes', 'No']}
+          selected={selectedWeather}
+          onSelect={setSelectedWeather}
+        />
+
+        <div className="predict-button-wrapper">
+          <button
+            onClick={() => setRightPanelView("leaderboard")}
+            className="predict-button"
+          >
+            Predict...
+          </button>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
+function WeatherDropdown({ options, selected, onSelect }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+  const handleOptionClick = (option) => {
+    onSelect(option);
+    setIsOpen(false);
+  };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div className="dropdown" ref={dropdownRef}>
+      <label>Include Weather Data:</label>
+      <button className="dropdown-button" onClick={toggleDropdown}>
+        {selected || "Select an option"} {selected && <span>✅</span>}
+      </button>
+      {isOpen && (
+        <ul className="dropdown-list">
+          {options.map((option) => (
+            <li
+              className="dropdown-item"
+              key={option}
+              onClick={() => handleOptionClick(option)}
+            >
+              {option}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 export default LeftPanel;

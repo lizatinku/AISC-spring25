@@ -1,0 +1,117 @@
+/* Container for the entire left panel */
+.left-panel-container {
+  min-height: 100vh;
+  background-color: #5C101E;
+  padding: 1.5rem 0;
+}
+
+/* Racecar image */
+.racecar-img {
+  height: 75px;
+  width: 115px;
+  margin-left: 10px;
+}
+
+/* Header */
+.header-text {
+  text-align: center;
+  color: white;
+  margin-top: 1rem;
+}
+
+/* Form box */
+.form-box {
+  background-color: #8C1C26;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  width: 70%;
+  max-width: 500px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  border: 1px solid #370A12;
+}
+
+/* Label and input group */
+.form-group {
+  margin-bottom: 1.75rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.input-field {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: #1f1f1f;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #d32f2f;
+  box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.2);
+}
+
+/* Dropdown */
+.dropdown {
+  color: white;
+}
+
+.dropdown-button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: #1f1f1f;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  outline: none;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.dropdown-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  background-color: white;
+  color: black;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-item {
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Predict Button */
+.predict-button-wrapper {
+  margin-top: 2rem;
+}
+
+.predict-button {
+  width: 100%;
+  padding: 0.85rem;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.predict-button:hover {
+  background-color: #f1f1f1;
+}
