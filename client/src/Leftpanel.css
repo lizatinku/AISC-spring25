@@ -16,7 +16,7 @@
 .header-text {
   text-align: center;
   color: white;
-  margin-top: 1rem;
+  margin-top: -1rem;
 }
 
 /* Form box */

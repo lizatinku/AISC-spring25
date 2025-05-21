@@ -9,8 +9,8 @@ function LeftPanel({ setRightPanelView }) {
     <div className="left-panel-container">
       <img src={logo} alt="Racecar" className="racecar-img" />
       <header className="header-text">
-        <h1>Result Predictor</h1>
-        <p>Based on the qualifying Position</p>
+        <h1>F1 leaderboard predictor</h1>
+        <p>Where your starting grid meets machine learning magic.</p>
       </header>
 
       <div className="form-box">

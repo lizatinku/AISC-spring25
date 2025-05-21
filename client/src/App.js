@@ -1,10 +1,7 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import LeftPanel from './Leftpanel';
 import RightPanel from './Rightpanel';
-import Leaderboard from './leaderboard';
-import { useState } from "react";
-
 
 const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1 }) => {
   const [left, right] = React.Children.toArray(children);
@@ -22,9 +19,7 @@ function App() {
   return (
     <SplitScreen leftWeight={0.6} rightWeight={1}>
       <LeftPanel setRightPanelView={setRightPanelView} />
-      <div className="right-panel">
-        {rightPanelView === "leaderboard" ? <Leaderboard /> : <RightPanel />}
-      </div>
+      <RightPanel showLeaderboard={rightPanelView === "leaderboard"} />
     </SplitScreen>
   );
 }
