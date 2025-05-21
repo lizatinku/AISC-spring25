@@ -1,79 +1,69 @@
 import fastf1
 import pandas as pd
-import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import mean_absolute_error
 
-# Enable FastF1 caching
 fastf1.Cache.enable_cache("f1_cache")
 
-# Load FastF1 2024 Australian GP race session
-session_2024 = fastf1.get_session(2024, 3, "R")
-session_2024.load()
+gp_rounds = {
+    "Australia": 3,
+    "Japan": 4,
+    "Bahrain": 1
+}
 
-# Extract lap times
-laps_2024 = session_2024.laps[["Driver", "LapTime"]].copy()
-laps_2024.dropna(subset=["LapTime"], inplace=True)
-laps_2024["LapTime (s)"] = laps_2024["LapTime"].dt.total_seconds()
-
-# 2025 Qualifying Data
 qualifying_2025 = pd.DataFrame({
     "Driver": ["Lando Norris", "Oscar Piastri", "Max Verstappen", "George Russell", "Yuki Tsunoda",
-               "Alexander Albon", "Charles Leclerc", "Lewis Hamilton", "Pierre Gasly", "Carlos Sainz", "Fernando Alonso", "Lance Stroll"],
+               "Alexander Albon", "Charles Leclerc", "Lewis Hamilton", "Pierre Gasly", "Carlos Sainz", "Fernando Alonso", "Lance Stroll",
+               "Esteban Ocon", "Andrea Kimi Antonelli", "Oliver Bearman"],
     "QualifyingTime (s)": [75.096, 75.180, 75.481, 75.546, 75.670,
-                           75.737, 75.755, 75.973, 75.980, 76.062, 76.4, 76.5]
+                           75.737, 75.755, 75.973, 75.980, 76.062, 76.4, 76.5,
+                           76.200, 76.500, 76.650]
 })
 
-# Map full names to FastF1 3-letter codes
 driver_mapping = {
     "Lando Norris": "NOR", "Oscar Piastri": "PIA", "Max Verstappen": "VER", "George Russell": "RUS",
     "Yuki Tsunoda": "TSU", "Alexander Albon": "ALB", "Charles Leclerc": "LEC", "Lewis Hamilton": "HAM",
-    "Pierre Gasly": "GAS", "Carlos Sainz": "SAI", "Lance Stroll": "STR", "Fernando Alonso": "ALO"
+    "Pierre Gasly": "GAS", "Carlos Sainz": "SAI", "Lance Stroll": "STR", "Fernando Alonso": "ALO",
+    "Esteban Ocon": "OCO", "Andrea Kimi Antonelli": "ANT", "Oliver Bearman": "BEA"
 }
 
-new_drivers = pd.DataFrame({
-    "Driver": ["Esteban Ocon", "Andrea Kimi Antonelli", "Oliver Bearman"],
-    "QualifyingTime (s)": [76.200, 76.500, 76.650],  # estimated mid-lower quali times
-})
-
-# Update driver mapping
-driver_mapping.update({
-    "Esteban Ocon": "OCO",
-    "Andrea Kimi Antonelli": "ANT",
-    "Oliver Bearman": "BEA"
-})
-
-qualifying_2025 = pd.concat([qualifying_2025, new_drivers], ignore_index=True)
 qualifying_2025["DriverCode"] = qualifying_2025["Driver"].map(driver_mapping)
 
-# Merge 2025 Qualifying Data with 2024 Race Data
-merged_data = qualifying_2025.merge(laps_2024, left_on="DriverCode", right_on="Driver")
+def train_and_predict(gp_name):
+    round_number = gp_rounds[gp_name]
+    session = fastf1.get_session(2024, round_number, "R")
+    session.load()
 
-# Use only "QualifyingTime (s)" as a feature
-X = merged_data[["QualifyingTime (s)"]]
-y = merged_data["LapTime (s)"]
+    laps = session.laps[["Driver", "LapTime"]].copy()
+    laps.dropna(subset=["LapTime"], inplace=True)
+    laps["LapTime (s)"] = laps["LapTime"].dt.total_seconds()
 
-if X.shape[0] == 0:
-    raise ValueError("Dataset is empty after preprocessing. Check data sources!")
+    merged_data = qualifying_2025.merge(laps, left_on="DriverCode", right_on="Driver")
+    X = merged_data[["QualifyingTime (s)"]]
+    y = merged_data["LapTime (s)"]
 
-# Train Gradient Boosting Model
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=39)
-model = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, random_state=39)
-model.fit(X_train, y_train)
+    if X.empty:
+        return pd.DataFrame(), None
 
-# Predict using 2025 qualifying times
-predicted_lap_times = model.predict(qualifying_2025[["QualifyingTime (s)"]])
-qualifying_2025["Predicted Race Time (s)"] = predicted_lap_times
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=39)
+    model = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, random_state=39)
+    model.fit(X_train, y_train)
 
-# Rank drivers by predicted race time
-qualifying_2025 = qualifying_2025.sort_values(by="Predicted Race Time (s)")
-qualifying_2025["Position"] = range(1, len(qualifying_2025) + 1)
+    preds = model.predict(qualifying_2025[["QualifyingTime (s)"]])
+    result = qualifying_2025.copy()
+    result["Predicted Race Time (s)"] = preds
+    result = result.sort_values(by="Predicted Race Time (s)").reset_index(drop=True)
+    result["Position"] = result.index + 1
 
-# Print final predictions
-print("\n🏁 2025 Chinese GP Predicted Leaderboard 🏁\n")
-print(qualifying_2025[["Position", "Driver", "Predicted Race Time (s)"]])
+    mae = mean_absolute_error(y_test, model.predict(X_test))
+    return result[["Position", "Driver", "Predicted Race Time (s)"]], mae
 
-# Evaluate Model
-y_pred = model.predict(X_test)
-print(f"\n🔍 Model Error (MAE): {mean_absolute_error(y_test, y_pred):.2f} seconds")
+for gp in ["Australia", "Japan", "Bahrain"]:
+    leaderboard, mae = train_and_predict(gp)
+    if not leaderboard.empty:
+        print(f"\n 2025 {gp} GP Predicted Leaderboard \U0001F3C1")
+        print(leaderboard)
+        print(f"\U0001F50D Model Error (MAE): {mae:.2f} seconds\n")
+    else:
+        print(f"\u26A0\uFE0F No data available for {gp}")
