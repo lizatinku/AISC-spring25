@@ -2,8 +2,28 @@ import React, { useState, useRef, useEffect } from 'react';
 import logo from './assets/fonelogo.png';
 import './Leftpanel.css';
 
-function LeftPanel({ setRightPanelView }) {
+function LeftPanel({ setRightPanelView, setLeaderboardData }) {
   const [selectedWeather, setSelectedWeather] = useState(null);
+  const [selectedCircuit, setSelectedCircuit] = useState("");
+  const [selectedTyre, setSelectedTyre] = useState("");
+
+  const handlePredict = async () => {
+    const response = await fetch("http://localhost:5000/predict", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        year: "2025",
+        circuit: selectedCircuit,
+        tyre: selectedTyre,
+        weather: selectedWeather,
+      }),
+    });
+
+    const data = await response.json();
+    console.log(data); // Debug
+    setRightPanelView("leaderboard");
+    setLeaderboardData(data.leaderboard);
+  };
 
   return (
     <div className="left-panel-container">
@@ -23,8 +43,12 @@ function LeftPanel({ setRightPanelView }) {
 
         <div className="form-group">
           <label>Circuit:</label>
-          <select className="input-field">
-            <option>Select an option</option>
+          <select
+            className="input-field"
+            value={selectedCircuit}
+            onChange={(e) => setSelectedCircuit(e.target.value)}
+          >
+            <option value="">Select an option</option>
             <option>Australia</option>
             <option>Japan</option>
             <option>Bahrain</option>
@@ -33,8 +57,12 @@ function LeftPanel({ setRightPanelView }) {
 
         <div className="form-group">
           <label>Tyre Compound:</label>
-          <select className="input-field">
-            <option>Select an option</option>
+          <select
+            className="input-field"
+            value={selectedTyre}
+            onChange={(e) => setSelectedTyre(e.target.value)}
+          >
+            <option value="">Select an option</option>
             <option>Soft</option>
             <option>Medium</option>
             <option>Hard</option>
@@ -48,10 +76,7 @@ function LeftPanel({ setRightPanelView }) {
         />
 
         <div className="predict-button-wrapper">
-          <button
-            onClick={() => setRightPanelView("leaderboard")}
-            className="predict-button"
-          >
+          <button onClick={handlePredict} className="predict-button">
             Predict...
           </button>
         </div>

@@ -1,4 +1,6 @@
-import racecar from './assets/car.png';
+import pic1 from './assets/pic1.jpg';
+import pic2 from './assets/pic2.jpg';
+import pic3 from './assets/pic3.jpg';
 
 const developers = [
   'Desiree Poon',
@@ -38,6 +40,34 @@ const QuoteGrid = () => (
   </div>
 );
 
+const ImageGrid = () => {
+  const images = [pic1, pic2, pic3];
+  return (
+    <div style={{
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+      gap: '1rem',
+      marginTop: '2rem',
+      marginBottom: '3rem'
+    }}>
+      {images.map((img, idx) => (
+        <img
+          key={idx}
+          src={img}
+          alt={`F1 Pic ${idx + 1}`}
+          style={{
+            width: '100%',
+            height: '160px',
+            objectFit: 'cover',
+            borderRadius: '1rem',
+            border: '1px solid #ccc'
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 const Box = () => (
   <div
     style={{
@@ -50,7 +80,7 @@ const Box = () => (
       backgroundColor: '#B6B5B5',
     }}
   >
-    {/* Replace with actual leaderboard content in future */}
+    {/* Replace with actual leaderboard content */}
   </div>
 );
 
@@ -73,12 +103,7 @@ export default function RightPanel({ showLeaderboard }) {
           </>
         ) : (
           <>
-            <h2 className="section-header">About F1</h2>
-            <p className="paragraph">
-              Formula 1, the world’s top motorsport since 1950, features 20 drivers from 10 elite teams racing on legendary tracks like Monaco and Suzuka.
-              Spanning five continents, it’s a high-stakes blend of speed, strategy, and split-second decisions.
-            </p>
-            <img src={racecar} alt="Racecar" className="racecar-img" />
+            <ImageGrid />
             <QuoteGrid />
           </>
         )}

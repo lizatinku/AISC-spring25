@@ -15,11 +15,12 @@ const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1 }) => {
 
 function App() {
   const [rightPanelView, setRightPanelView] = useState("default");
+  const [leaderboardData, setLeaderboardData] = useState([]);
 
   return (
     <SplitScreen leftWeight={0.6} rightWeight={1}>
-      <LeftPanel setRightPanelView={setRightPanelView} />
-      <RightPanel showLeaderboard={rightPanelView === "leaderboard"} />
+      <LeftPanel setRightPanelView={setRightPanelView} setLeaderboardData={setLeaderboardData} />
+      <RightPanel showLeaderboard={rightPanelView === "leaderboard"} leaderboardData={leaderboardData} />
     </SplitScreen>
   );
 }
