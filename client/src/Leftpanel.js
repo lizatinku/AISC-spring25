@@ -8,21 +8,22 @@ function LeftPanel({ setRightPanelView, setLeaderboardData }) {
   const [selectedTyre, setSelectedTyre] = useState("");
 
   const handlePredict = async () => {
-    const response = await fetch("http://localhost:5000/predict", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        year: "2025",
-        circuit: selectedCircuit,
-        tyre: selectedTyre,
-        weather: selectedWeather,
-      }),
-    });
+    if (!selectedCircuit) {
+      alert("Please select a circuit.");
+      return;
+    }
 
-    const data = await response.json();
-    console.log(data); // Debug
-    setRightPanelView("leaderboard");
-    setLeaderboardData(data.leaderboard);
+    try {
+      const response = await fetch(`/data/${selectedCircuit.toLowerCase()}.json`);
+      const data = await response.json();
+      console.log("Loaded local JSON:", data);
+
+      setLeaderboardData(data.leaderboard);
+      setRightPanelView("leaderboard");
+    } catch (error) {
+      console.error("Failed to load local JSON:", error);
+      alert("Error loading leaderboard data.");
+    }
   };
 
   return (

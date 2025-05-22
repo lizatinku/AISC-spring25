@@ -1,0 +1,22 @@
+{
+  "gp": "Australia",
+  "year": 2025,
+  "mae": 3.36,
+  "leaderboard": [
+    { "Position": 1, "Driver": "Lando Norris", "Predicted Race Time (s)": 82.788288 },
+    { "Position": 2, "Driver": "Carlos Sainz", "Predicted Race Time (s)": 82.842318 },
+    { "Position": 3, "Driver": "Charles Leclerc", "Predicted Race Time (s)": 83.312528 },
+    { "Position": 4, "Driver": "George Russell", "Predicted Race Time (s)": 83.773524 },
+    { "Position": 5, "Driver": "Max Verstappen", "Predicted Race Time (s)": 84.090389 },
+    { "Position": 6, "Driver": "Oscar Piastri", "Predicted Race Time (s)": 84.386956 },
+    { "Position": 7, "Driver": "Alexander Albon", "Predicted Race Time (s)": 84.605579 },
+    { "Position": 8, "Driver": "Yuki Tsunoda", "Predicted Race Time (s)": 84.618958 },
+    { "Position": 9, "Driver": "Fernando Alonso", "Predicted Race Time (s)": 84.718314 },
+    { "Position": 10, "Driver": "Lance Stroll", "Predicted Race Time (s)": 85.511394 },
+    { "Position": 11, "Driver": "Andrea Kimi Antonelli", "Predicted Race Time (s)": 85.511394 },
+    { "Position": 12, "Driver": "Oliver Bearman", "Predicted Race Time (s)": 85.511394 },
+    { "Position": 13, "Driver": "Esteban Ocon", "Predicted Race Time (s)": 85.518043 },
+    { "Position": 14, "Driver": "Lewis Hamilton", "Predicted Race Time (s)": 85.525230 },
+    { "Position": 15, "Driver": "Pierre Gasly", "Predicted Race Time (s)": 85.652100 }
+  ]
+}

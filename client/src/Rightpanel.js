@@ -68,23 +68,32 @@ const ImageGrid = () => {
   );
 };
 
-const Box = () => (
-  <div
-    style={{
-      padding: '15px',
-      border: '5px solid #ccc',
-      borderColor: '#B6B5B5',
-      height: '600px',
-      width: '600px',
-      marginLeft: 175,
-      backgroundColor: '#B6B5B5',
-    }}
-  >
-    {/* Replace with actual leaderboard content */}
+const Box = ({ leaderboard }) => (
+  <div className="leaderboard-container">
+    <table className="leaderboard-table">
+      <thead>
+        <tr>
+          <th>POS</th>
+          <th>Driver</th>
+          <th>Compound</th>
+          <th>Predicted Race Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {leaderboard.map((row, idx) => (
+          <tr key={idx}>
+            <td>{row.Position}</td>
+            <td>{row.Driver}</td>
+            <td>{row.Compound || "Soft"}</td>
+            <td>{row["Predicted Race Time (s)"]}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   </div>
 );
 
-export default function RightPanel({ showLeaderboard }) {
+export default function RightPanel({ showLeaderboard, leaderboardData = [] }) {
   return (
     <div className="right-panel">
       <div className="content">
@@ -99,7 +108,7 @@ export default function RightPanel({ showLeaderboard }) {
           <>
             <h3 className="section-header">Results Are In...</h3>
             <p className="leaderboard">Leaderboard</p>
-            <Box />
+            <Box leaderboard={leaderboardData} />
           </>
         ) : (
           <>

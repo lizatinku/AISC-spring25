@@ -1,0 +1,56 @@
+.leaderboard-container {
+  margin: 2rem auto;
+  max-width: 800px;
+  background-color: #FFEBEB;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow-x: auto;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  margin: 2rem auto;
+  background-color: #FFEBEB;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.leaderboard-table th {
+  background-color: #8C1C26;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+  border-right: 1px solid #f9f9f9;
+  font-size: 1rem;
+}
+
+.leaderboard-table th:last-child {
+  border-right: none;
+}
+
+.leaderboard-table td {
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #333;
+  border-right: 1px solid #f0cfcf;
+  border-top: 1px solid #f9dada;
+}
+
+.leaderboard-table td:last-child {
+  border-right: none;
+}
+
+.leaderboard-table tr:nth-child(even) {
+  background-color: #ffe1e1;
+}
+
+.leaderboard-table tr:hover {
+  background-color: #fcdcdc;
+  transition: background-color 0.2s ease-in-out;
+}

@@ -1,0 +1,22 @@
+{
+  "gp": "Japan",
+  "year": 2025,
+  "mae": 3.51,
+  "leaderboard": [
+    { "Position": 1, "Driver": "Oscar Piastri", "Predicted Race Time (s)": 97.749805 },
+    { "Position": 2, "Driver": "Carlos Sainz", "Predicted Race Time (s)": 97.970102 },
+    { "Position": 3, "Driver": "Max Verstappen", "Predicted Race Time (s)": 98.213892 },
+    { "Position": 4, "Driver": "Lando Norris", "Predicted Race Time (s)": 98.504759 },
+    { "Position": 5, "Driver": "Fernando Alonso", "Predicted Race Time (s)": 98.558483 },
+    { "Position": 6, "Driver": "Alexander Albon", "Predicted Race Time (s)": 98.967834 },
+    { "Position": 7, "Driver": "Charles Leclerc", "Predicted Race Time (s)": 98.967834 },
+    { "Position": 8, "Driver": "George Russell", "Predicted Race Time (s)": 99.056206 },
+    { "Position": 9, "Driver": "Lewis Hamilton", "Predicted Race Time (s)": 99.157615 },
+    { "Position": 10, "Driver": "Yuki Tsunoda", "Predicted Race Time (s)": 100.935631 },
+    { "Position": 11, "Driver": "Lance Stroll", "Predicted Race Time (s)": 101.320873 },
+    { "Position": 12, "Driver": "Andrea Kimi Antonelli", "Predicted Race Time (s)": 101.320873 },
+    { "Position": 13, "Driver": "Oliver Bearman", "Predicted Race Time (s)": 101.320873 },
+    { "Position": 14, "Driver": "Esteban Ocon", "Predicted Race Time (s)": 102.119850 },
+    { "Position": 15, "Driver": "Pierre Gasly", "Predicted Race Time (s)": 103.020973 }
+  ]
+}
